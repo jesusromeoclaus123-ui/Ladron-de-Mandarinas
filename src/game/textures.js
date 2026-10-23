@@ -74,5 +74,23 @@ export function createPlaceholderTextures(scene) {
   graphics.fillStyle(0xe8f5d0, 1);
   graphics.fillRect(24, 36, 12, 6);
   graphics.generateTexture(TEXTURE_KEYS.exitOpen, 60, 80);
+  graphics.clear();
+
+  // Vecino (provisional, distinto al jugador)
+  graphics.fillStyle(0x8c3f2a, 1);
+  graphics.fillRect(4, 14, 20, 18);
+  graphics.fillStyle(0xf2c9a0, 1);
+  graphics.fillCircle(14, 9, 8);
+  graphics.fillStyle(0x4a2a1a, 1);
+  graphics.fillRect(4, 32, 7, 8);
+  graphics.fillRect(17, 32, 7, 8);
+  graphics.fillStyle(0x1a1a1a, 1);
+  graphics.fillCircle(18, 8, 2);
+  graphics.fillStyle(0xf5d000, 1);
+  graphics.fillRect(8, 7, 4, 2);
+  graphics.fillRect(16, 7, 4, 2);
+  graphics.generateTexture(TEXTURE_KEYS.neighbor, 28, 40);
+  graphics.clear();
+
   graphics.destroy();
 }

@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import { BootScene } from './scenes/BootScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
 import { LevelScene } from './scenes/LevelScene.js';
+import { GameOverScene } from './scenes/GameOverScene.js';
+import { VictoryScene } from './scenes/VictoryScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './game/constants.js';
 
 const config = {
@@ -21,7 +23,7 @@ const config = {
       debug: false
     }
   },
-  scene: [BootScene, MenuScene, LevelScene]
+  scene: [BootScene, MenuScene, LevelScene, GameOverScene, VictoryScene]
 };
 
 new Phaser.Game(config);

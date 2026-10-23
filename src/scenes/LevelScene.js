@@ -4,6 +4,7 @@ import { LEVELS } from '../levels/index.js';
 import { Player } from '../entities/Player.js';
 import { Tangerine } from '../entities/Tangerine.js';
 import { Exit } from '../entities/Exit.js';
+import { Neighbor } from '../entities/Neighbor.js';
 
 export class LevelScene extends Phaser.Scene {
   constructor() {
@@ -43,6 +44,20 @@ export class LevelScene extends Phaser.Scene {
 
     this.player = new Player(this, level.playerStart.x, level.playerStart.y);
     this.physics.add.collider(this.player, this.solids);
+
+    if (level.neighbor) {
+      this.neighbor = new Neighbor(
+        this,
+        level.neighbor.x,
+        level.neighbor.y,
+        level.neighbor.patrolLeft,
+        level.neighbor.patrolRight
+      );
+      this.physics.add.collider(this.neighbor, this.solids);
+      this.physics.add.overlap(this.player, this.neighbor, () => {
+        this.triggerGameOver();
+      });
+    }
 
     this.tangerines = this.add.group();
     for (const position of level.tangerines) {
@@ -143,19 +158,40 @@ export class LevelScene extends Phaser.Scene {
     this.hasFinished = true;
 
     if (this.level.nextLevelId) {
+      this.scene.stop();
       this.scene.start(SCENE_KEYS.level, { levelId: this.level.nextLevelId });
+      return;
     }
+
+    if (this.levelId === 'level2') {
+      this.scene.stop();
+      this.scene.start(SCENE_KEYS.victory);
+      return;
+    }
+  }
+
+  triggerGameOver() {
+    if (this.isRestarting || this.hasFinished) {
+      return;
+    }
+
+    this.isRestarting = true;
+    this.physics.pause();
+    this.scene.stop();
+    this.scene.start(SCENE_KEYS.gameOver, { levelId: this.levelId });
   }
 
   update() {
     this.player.update();
+    if (this.neighbor) {
+      this.neighbor.update();
+    }
 
     if (
       !this.isRestarting &&
       this.player.y > this.level.height + LEVEL.fallMargin
     ) {
-      this.isRestarting = true;
-      this.scene.restart({ levelId: this.levelId });
+      this.triggerGameOver();
     }
   }
 }
