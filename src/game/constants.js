@@ -10,7 +10,11 @@ export const SCENE_KEYS = {
 export const TEXTURE_KEYS = {
   player: 'player',
   ground: 'ground',
-  platform: 'platform'
+  platform: 'platform',
+  fence: 'fence',
+  tangerine: 'tangerine',
+  exitLocked: 'exitLocked',
+  exitOpen: 'exitOpen'
 };
 
 export const COLORS = {
@@ -21,4 +25,8 @@ export const COLORS = {
 export const PLAYER = {
   speed: 220,
   jumpVelocity: -540
+};
+
+export const LEVEL = {
+  fallMargin: 60
 };
