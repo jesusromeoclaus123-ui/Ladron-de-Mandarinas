@@ -1,18 +1,14 @@
 import Phaser from 'phaser';
+import { SCENE_KEYS } from '../game/constants.js';
+import { createPlaceholderTextures } from '../game/textures.js';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
-    super('BootScene');
+    super(SCENE_KEYS.boot);
   }
 
   create() {
-    const width = this.scale.width;
-    const height = this.scale.height;
-
-    this.add.text(width / 2, height / 2, 'Ladrón de Mandarinas', {
-      fontFamily: 'Arial',
-      fontSize: '48px',
-      color: '#ffffff'
-    }).setOrigin(0.5);
+    createPlaceholderTextures(this);
+    this.scene.start(SCENE_KEYS.menu);
   }
 }

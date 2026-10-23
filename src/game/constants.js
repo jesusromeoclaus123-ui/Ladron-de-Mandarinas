@@ -1,0 +1,24 @@
+export const GAME_WIDTH = 800;
+export const GAME_HEIGHT = 600;
+
+export const SCENE_KEYS = {
+  boot: 'BootScene',
+  menu: 'MenuScene',
+  level: 'LevelScene'
+};
+
+export const TEXTURE_KEYS = {
+  player: 'player',
+  ground: 'ground',
+  platform: 'platform'
+};
+
+export const COLORS = {
+  sky: 0x9fd3ff,
+  menuBackground: 0x2d5a27
+};
+
+export const PLAYER = {
+  speed: 220,
+  jumpVelocity: -540
+};
