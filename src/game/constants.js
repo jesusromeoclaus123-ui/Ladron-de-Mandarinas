@@ -4,7 +4,9 @@ export const GAME_HEIGHT = 600;
 export const SCENE_KEYS = {
   boot: 'BootScene',
   menu: 'MenuScene',
-  level: 'LevelScene'
+  level: 'LevelScene',
+  gameOver: 'GameOverScene',
+  victory: 'VictoryScene'
 };
 
 export const TEXTURE_KEYS = {
@@ -14,7 +16,8 @@ export const TEXTURE_KEYS = {
   fence: 'fence',
   tangerine: 'tangerine',
   exitLocked: 'exitLocked',
-  exitOpen: 'exitOpen'
+  exitOpen: 'exitOpen',
+  neighbor: 'neighbor'
 };
 
 export const COLORS = {

@@ -17,7 +17,7 @@ export const level1 = {
     { x: 1430, y: 450, width: 150, height: 24 }
   ],
   fences: [
-    { x: 200, y: 480, width: 16, height: 80 },
+    { x: 150, y: 480, width: 16, height: 80 },
     { x: 2200, y: 480, width: 16, height: 80 }
   ],
   tangerines: [

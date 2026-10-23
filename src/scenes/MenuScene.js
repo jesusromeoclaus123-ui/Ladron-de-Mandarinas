@@ -11,6 +11,7 @@ export class MenuScene extends Phaser.Scene {
     const height = this.scale.height;
 
     this.cameras.main.setBackgroundColor(COLORS.menuBackground);
+    this.children.removeAll();
 
     this.add.text(width / 2, 150, 'Ladrón de Mandarinas', {
       fontFamily: 'Arial, sans-serif',
@@ -56,6 +57,8 @@ export class MenuScene extends Phaser.Scene {
       button.setFillStyle(0xf28c28);
     });
 
+    button.off('pointerdown');
+    button.removeAllListeners();
     button.on('pointerdown', () => {
       this.scene.start(SCENE_KEYS.level, { levelId: 'level1' });
     });
