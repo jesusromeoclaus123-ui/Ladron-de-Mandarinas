@@ -32,5 +32,47 @@ export function createPlaceholderTextures(scene) {
   graphics.fillStyle(0x4f9e45, 1);
   graphics.fillRect(0, 0, 40, 5);
   graphics.generateTexture(TEXTURE_KEYS.platform, 40, 24);
+  graphics.clear();
+
+  // Cerca
+  graphics.fillStyle(0x7a4a24, 1);
+  graphics.fillRect(0, 0, 16, 80);
+  graphics.fillStyle(0x4f2f16, 1);
+  graphics.fillRect(0, 8, 16, 6);
+  graphics.fillRect(0, 34, 16, 6);
+  graphics.fillRect(0, 60, 16, 6);
+  graphics.generateTexture(TEXTURE_KEYS.fence, 16, 80);
+  graphics.clear();
+
+  // Mandarina
+  graphics.fillStyle(0xf28c28, 1);
+  graphics.fillCircle(12, 14, 10);
+  graphics.fillStyle(0xffb347, 1);
+  graphics.fillCircle(9, 10, 4);
+  graphics.fillStyle(0x3f8f3a, 1);
+  graphics.fillRect(13, 2, 8, 4);
+  graphics.fillStyle(0x2f6f2a, 1);
+  graphics.fillRect(15, 0, 3, 4);
+  graphics.generateTexture(TEXTURE_KEYS.tangerine, 24, 24);
+  graphics.clear();
+
+  // Salida bloqueada
+  graphics.fillStyle(0x5f5f5f, 1);
+  graphics.fillRect(0, 0, 60, 80);
+  graphics.fillStyle(0x8a8a8a, 1);
+  graphics.fillRect(6, 6, 48, 68);
+  graphics.fillStyle(0x3a3a3a, 1);
+  graphics.fillRect(24, 36, 12, 6);
+  graphics.generateTexture(TEXTURE_KEYS.exitLocked, 60, 80);
+  graphics.clear();
+
+  // Salida habilitada
+  graphics.fillStyle(0x1f5c25, 1);
+  graphics.fillRect(0, 0, 60, 80);
+  graphics.fillStyle(0x4fbf55, 1);
+  graphics.fillRect(6, 6, 48, 68);
+  graphics.fillStyle(0xe8f5d0, 1);
+  graphics.fillRect(24, 36, 12, 6);
+  graphics.generateTexture(TEXTURE_KEYS.exitOpen, 60, 80);
   graphics.destroy();
 }
