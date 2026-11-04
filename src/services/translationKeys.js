@@ -9,7 +9,10 @@ export const TRANSLATION_KEYS = {
     tangerines: 'Mandarinas',
     names: {
       level1: 'Nivel 1 — La entrada al patio',
-      level2: 'Nivel 2 — Cuidado con el vecino'
+      level2: 'Nivel 2 — Cuidado con el vecino',
+      level3: 'Nivel 3 — Entre las cercas',
+      level4: 'Nivel 4 — La ronda del vecino',
+      level5: 'Nivel 5 — La gran escapada'
     }
   },
   gameOver: {
@@ -20,7 +23,7 @@ export const TRANSLATION_KEYS = {
   },
   victory: {
     title: '¡Escapaste con las mandarinas!',
-    subtitle: 'Completaste el Nivel 2',
+    subtitle: 'Completaste el Nivel 5',
     backToMenu: 'Volver al menú'
   }
 };
