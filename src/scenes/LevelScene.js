@@ -47,18 +47,23 @@ export class LevelScene extends Phaser.Scene {
     this.player = new Player(this, level.playerStart.x, level.playerStart.y);
     this.physics.add.collider(this.player, this.solids);
 
-    if (level.neighbor) {
-      this.neighbor = new Neighbor(
+    this.neighbors = [];
+    const neighborConfigs = level.neighbors ?? (level.neighbor ? [level.neighbor] : []);
+
+    for (const config of neighborConfigs) {
+      const neighbor = new Neighbor(
         this,
-        level.neighbor.x,
-        level.neighbor.y,
-        level.neighbor.patrolLeft,
-        level.neighbor.patrolRight
+        config.x,
+        config.y,
+        config.patrolLeft,
+        config.patrolRight
       );
-      this.physics.add.collider(this.neighbor, this.solids);
-      this.physics.add.overlap(this.player, this.neighbor, () => {
+
+      this.physics.add.collider(neighbor, this.solids);
+      this.physics.add.overlap(this.player, neighbor, () => {
         this.triggerGameOver();
       });
+      this.neighbors.push(neighbor);
     }
 
     this.tangerines = this.add.group();
@@ -168,10 +173,9 @@ export class LevelScene extends Phaser.Scene {
       return;
     }
 
-    if (this.levelId === 'level2') {
+    if (this.level.isFinal) {
       this.scene.stop();
       this.scene.start(SCENE_KEYS.victory);
-      return;
     }
   }
 
@@ -188,8 +192,9 @@ export class LevelScene extends Phaser.Scene {
 
   update() {
     this.player.update();
-    if (this.neighbor) {
-      this.neighbor.update();
+
+    for (const neighbor of this.neighbors) {
+      neighbor.update();
     }
 
     if (

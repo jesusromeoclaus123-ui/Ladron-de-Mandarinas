@@ -4,7 +4,7 @@ export const level2 = {
   height: 600,
   playerStart: { x: 100, y: 520 },
   requiredTangerines: 5,
-  nextLevelId: null,
+  nextLevelId: 'level3',
   ground: [
     { x: 0, y: 560, width: 600, height: 40 },
     { x: 720, y: 560, width: 520, height: 40 },
