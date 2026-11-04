@@ -1,4 +1,5 @@
 import { TEXTURE_KEYS } from './constants.js';
+import { createSceneryTextures } from './sceneryTextures.js';
 
 export function createPlaceholderTextures(scene) {
   const graphics = scene.add.graphics();
@@ -15,6 +16,26 @@ export function createPlaceholderTextures(scene) {
   graphics.fillCircle(18, 8, 2);
   graphics.generateTexture(TEXTURE_KEYS.player, 28, 40);
   graphics.clear();
+
+  // Dos pasos con los mismos colores y tamaño del protagonista original.
+  const playerSteps = [
+    { key: TEXTURE_KEYS.playerWalk1, left: 4, right: 18 },
+    { key: TEXTURE_KEYS.playerWalk2, left: 6, right: 16 }
+  ];
+
+  for (const step of playerSteps) {
+    graphics.fillStyle(0x2f6fbf, 1);
+    graphics.fillRect(4, 14, 20, 18);
+    graphics.fillStyle(0xf2c9a0, 1);
+    graphics.fillCircle(14, 9, 8);
+    graphics.fillStyle(0x3a2a1a, 1);
+    graphics.fillRect(step.left, 32, 6, 8);
+    graphics.fillRect(step.right, 32, 6, 8);
+    graphics.fillStyle(0x1a1a1a, 1);
+    graphics.fillCircle(18, 8, 2);
+    graphics.generateTexture(step.key, 28, 40);
+    graphics.clear();
+  }
 
   // Suelo
   graphics.fillStyle(0x6b4a2b, 1);
@@ -93,4 +114,5 @@ export function createPlaceholderTextures(scene) {
   graphics.clear();
 
   graphics.destroy();
+  createSceneryTextures(scene);
 }

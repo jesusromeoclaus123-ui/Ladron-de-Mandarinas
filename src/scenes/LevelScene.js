@@ -39,6 +39,8 @@ export class LevelScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, level.width, level.height);
     this.cameras.main.setBackgroundColor(COLORS.sky);
 
+    this.createDecorations(level.decorations ?? []);
+
     this.solids = this.physics.add.staticGroup();
     this.addSolids(level.ground, TEXTURE_KEYS.ground);
     this.addSolids(level.platforms, TEXTURE_KEYS.platform);
@@ -87,6 +89,19 @@ export class LevelScene extends Phaser.Scene {
 
     this.createHud();
     this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
+  }
+
+  createDecorations(decorations) {
+    for (const decoration of decorations) {
+      this.add.image(
+        decoration.x,
+        decoration.y,
+        TEXTURE_KEYS[decoration.type]
+      )
+        .setOrigin(0.5, 1)
+        .setDepth(decoration.type === 'house' ? -30 : -20)
+        .setAlpha(0.75);
+    }
   }
 
   addSolids(blocks, texture) {

@@ -3,6 +3,20 @@ export const level1 = {
   width: 2500,
   height: 600,
   playerStart: { x: 100, y: 520 },
+  decorations: [
+    { type: 'house', x: 2080, y: 560 },
+    { type: 'tree', x: 190, y: 560 },
+    { type: 'tree', x: 940, y: 560 },
+    { type: 'tree', x: 1550, y: 560 },
+    { type: 'tree', x: 2360, y: 560 },
+    { type: 'bush', x: 460, y: 560 },
+    { type: 'bush', x: 1100, y: 560 },
+    { type: 'bush', x: 1900, y: 560 },
+    { type: 'grass', x: 720, y: 560 },
+    { type: 'grass', x: 1640, y: 560 },
+    { type: 'flowers', x: 60, y: 560 },
+    { type: 'flowers', x: 2250, y: 560 }
+  ],
   requiredTangerines: 3,
   nextLevelId: 'level2',
   ground: [

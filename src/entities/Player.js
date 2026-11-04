@@ -14,6 +14,18 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.cursors = scene.input.keyboard.createCursorKeys();
     this.leftKey = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.rightKey = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
+    if (!scene.anims.exists('player_walk')) {
+      scene.anims.create({
+        key: 'player_walk',
+        frames: [
+          { key: TEXTURE_KEYS.playerWalk1 },
+          { key: TEXTURE_KEYS.playerWalk2 }
+        ],
+        frameRate: 8,
+        repeat: -1
+      });
+    }
   }
 
   update() {
@@ -34,6 +46,13 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     if (isGrounded && Phaser.Input.Keyboard.JustDown(this.cursors.space)) {
       this.setVelocityY(PLAYER.jumpVelocity);
+    }
+
+    if (isGrounded && this.body.velocity.y >= 0 && this.body.velocity.x !== 0) {
+      this.play('player_walk', true);
+    } else {
+      this.anims.stop();
+      this.setTexture(TEXTURE_KEYS.player);
     }
   }
 }
