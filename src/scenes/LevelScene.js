@@ -5,6 +5,8 @@ import { Player } from '../entities/Player.js';
 import { Tangerine } from '../entities/Tangerine.js';
 import { Exit } from '../entities/Exit.js';
 import { Neighbor } from '../entities/Neighbor.js';
+import { TRANSLATION_KEYS } from '../services/translationKeys.js';
+import { getPhrase } from '../services/translations.js';
 
 export class LevelScene extends Phaser.Scene {
   constructor() {
@@ -107,7 +109,9 @@ export class LevelScene extends Phaser.Scene {
       strokeThickness: 5
     };
 
-    this.add.text(20, 16, this.level.name, textStyle)
+    const levelNameKey = TRANSLATION_KEYS.level.names[this.levelId];
+
+    this.add.text(20, 16, getPhrase(levelNameKey ?? this.level.name), textStyle)
       .setScrollFactor(0)
       .setDepth(100);
 
@@ -124,7 +128,8 @@ export class LevelScene extends Phaser.Scene {
 
   updateCounter() {
     this.counterText.setText(
-      `Mandarinas: ${this.collectedTangerines} / ${this.requiredTangerines}`
+      `${getPhrase(TRANSLATION_KEYS.level.tangerines)}: ` +
+      `${this.collectedTangerines} / ${this.requiredTangerines}`
     );
   }
 

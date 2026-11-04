@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { COLORS, SCENE_KEYS } from '../game/constants.js';
+import { TRANSLATION_KEYS } from '../services/translationKeys.js';
+import { getPhrase } from '../services/translations.js';
 
 export class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -16,7 +18,7 @@ export class GameOverScene extends Phaser.Scene {
 
     this.cameras.main.setBackgroundColor(COLORS.menuBackground);
 
-    this.add.text(width / 2, 180, 'Game Over', {
+    this.add.text(width / 2, 180, getPhrase(TRANSLATION_KEYS.gameOver.title), {
       fontFamily: 'Arial, sans-serif',
       fontSize: '64px',
       fontStyle: 'bold',
@@ -25,18 +27,18 @@ export class GameOverScene extends Phaser.Scene {
       strokeThickness: 6
     }).setOrigin(0.5);
 
-    this.add.text(width / 2, 250, 'Te atraparon o caíste al pozo', {
+    this.add.text(width / 2, 250, getPhrase(TRANSLATION_KEYS.gameOver.subtitle), {
       fontFamily: 'Arial, sans-serif',
       fontSize: '24px',
       color: '#f5d0d0'
     }).setOrigin(0.5);
 
-    this.createButton(width / 2, 340, 'Reintentar', () => {
+    this.createButton(width / 2, 340, getPhrase(TRANSLATION_KEYS.gameOver.retry), () => {
       this.scene.stop();
       this.scene.start(SCENE_KEYS.level, { levelId: this.levelId });
     });
 
-    this.createButton(width / 2, 420, 'Volver al menú', () => {
+    this.createButton(width / 2, 420, getPhrase(TRANSLATION_KEYS.gameOver.backToMenu), () => {
       this.scene.stop();
       this.scene.start(SCENE_KEYS.menu);
     });
