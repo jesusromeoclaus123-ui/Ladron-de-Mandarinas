@@ -11,13 +11,20 @@ export const SCENE_KEYS = {
 
 export const TEXTURE_KEYS = {
   player: 'player',
+  playerWalk1: 'player_walk1',
+  playerWalk2: 'player_walk2',
   ground: 'ground',
   platform: 'platform',
   fence: 'fence',
   tangerine: 'tangerine',
   exitLocked: 'exitLocked',
   exitOpen: 'exitOpen',
-  neighbor: 'neighbor'
+  neighbor: 'neighbor',
+  house: 'house',
+  tree: 'tree',
+  bush: 'bush',
+  grass: 'grass',
+  flowers: 'flowers'
 };
 
 export const COLORS = {

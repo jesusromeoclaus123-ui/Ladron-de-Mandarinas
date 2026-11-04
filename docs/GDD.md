@@ -46,15 +46,15 @@ El juego completo tiene **cinco niveles** con dificultad progresiva, todos jugab
 | --- | --- | --- |
 | 1 | La entrada al patio | Recolectar **3 mandarinas**. Aprender a moverse, saltar, superar obstáculos sencillos y llegar a la salida. |
 | 2 | Cuidado con el vecino | Recolectar **5 mandarinas**. Recorrer un escenario con más obstáculos y evitar al vecino que patrulla. |
-| 3 | Entre las cercas | Recolectar **7 mandarinas**. Saltos más exigentes y recorridos con espacios reducidos, cercas y un vecino. |
-| 4 | La ronda del vecino | Recolectar **8 mandarinas**. Más zonas vigiladas por dos vecinos y obstáculos combinados. |
-| 5 | La gran escapada | Recolectar **10 mandarinas** y escapar por la salida final, combinando todos los desafíos anteriores con tres vecinos. |
+| 3 | Entre las cercas | Recolectar **7 mandarinas**. Saltos más exigentes y recorridos con espacios reducidos, cercas y dos vecinos. |
+| 4 | La ronda del vecino | Recolectar **8 mandarinas**. Más zonas vigiladas por tres vecinos y obstáculos combinados. |
+| 5 | La gran escapada | Recolectar **10 mandarinas** y escapar por la salida final, combinando todos los desafíos anteriores con cuatro vecinos. |
 
 - **Nivel 1:** Sin vecino. Enfocado a aprendizaje de movimiento, salto, recolección y salida.
 - **Nivel 2:** Más largo que el nivel 1, con más obstáculos, **5 mandarinas** y el vecino patrullando entre dos coordenadas.
-- **Nivel 3:** Recorrido entre cercas con **7 mandarinas**, plataformas escalonadas, pozos y un vecino.
-- **Nivel 4:** **8 mandarinas**, dos vecinos patrullando y una combinación distinta de plataformas, pozos y cercas.
-- **Nivel 5:** **10 mandarinas**, tres vecinos y el recorrido más largo y exigente, con todas las mecánicas combinadas.
+- **Nivel 3:** Recorrido entre cercas con **7 mandarinas**, plataformas escalonadas, pozos y dos vecinos.
+- **Nivel 4:** **8 mandarinas**, tres vecinos patrullando y una combinación distinta de plataformas, pozos y cercas.
+- **Nivel 5:** **10 mandarinas**, cuatro vecinos y el recorrido más largo y exigente, con todas las mecánicas combinadas.
 
 ## 6. Victoria y derrota
 
