@@ -30,21 +30,25 @@ export const level4 = {
   platforms: [
     { x: 180, y: 460, width: 140, height: 24 },
     { x: 400, y: 380, width: 130, height: 24 },
+    { x: 580, y: 440, width: 160, height: 24 },
     { x: 900, y: 450, width: 170, height: 24 },
-    { x: 1150, y: 360, width: 140, height: 24 },
-    { x: 1350, y: 360, width: 130, height: 24 },
+    { x: 1100, y: 360, width: 360, height: 24 },
+    { x: 1480, y: 440, width: 150, height: 24 },
     { x: 1780, y: 440, width: 150, height: 24 },
-    { x: 2000, y: 350, width: 140, height: 24 },
-    { x: 2180, y: 390, width: 120, height: 24 },
+    { x: 1940, y: 350, width: 340, height: 24 },
+    { x: 2320, y: 440, width: 140, height: 24 },
     { x: 2600, y: 450, width: 160, height: 24 },
     { x: 2830, y: 370, width: 150, height: 24 },
     { x: 3220, y: 450, width: 160, height: 24 }
   ],
   fences: [
+    { x: 340, y: 480, width: 16, height: 80 },
     { x: 580, y: 480, width: 16, height: 80 },
     { x: 1480, y: 480, width: 16, height: 80 },
+    { x: 1900, y: 480, width: 16, height: 80 },
     { x: 2300, y: 480, width: 16, height: 80 },
     { x: 3150, y: 480, width: 16, height: 80 },
+    { x: 3330, y: 480, width: 16, height: 80 },
     { x: 3450, y: 480, width: 16, height: 80 },
     { x: 3550, y: 480, width: 16, height: 80 }
   ],
@@ -52,16 +56,17 @@ export const level4 = {
     { x: 250, y: 434 },
     { x: 465, y: 354 },
     { x: 985, y: 424 },
-    { x: 1220, y: 334 },
+    { x: 1390, y: 334 },
     { x: 1855, y: 414 },
-    { x: 2070, y: 324 },
+    { x: 2220, y: 324 },
     { x: 2680, y: 424 },
     { x: 2905, y: 344 }
   ],
   exit: { x: 3650, y: 520 },
   neighbors: [
-    { x: 1000, y: 539, patrolLeft: 860, patrolRight: 1400 },
-    { x: 1950, y: 539, patrolLeft: 1770, patrolRight: 2180 },
-    { x: 2900, y: 539, patrolLeft: 2700, patrolRight: 3080 }
+    { x: 980, y: 540, patrolLeft: 900, patrolRight: 1050 },
+    { x: 1240, y: 340, patrolLeft: 1210, patrolRight: 1330 },
+    { x: 2100, y: 330, patrolLeft: 2040, patrolRight: 2170 },
+    { x: 2900, y: 540, patrolLeft: 2700, patrolRight: 3080 }
   ]
 };
