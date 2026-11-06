@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
-import { COLORS, SCENE_KEYS } from '../game/constants.js';
+import { SCENE_KEYS, TEXTURE_KEYS } from '../game/constants.js';
+import { createScreenBackdrop, createScreenButton } from '../game/screenLayout.js';
 import { TRANSLATION_KEYS } from '../services/translationKeys.js';
 import {
   LANGUAGES,
@@ -13,10 +14,6 @@ const LANGUAGE_OPTIONS = [
   { label: 'English', language: LANGUAGES.english }
 ];
 
-const SELECTED_COLOR = 0xf28c28;
-const UNSELECTED_COLOR = 0x1f4020;
-const HOVER_COLOR = 0x2f5c30;
-
 export class MenuScene extends Phaser.Scene {
   constructor() {
     super(SCENE_KEYS.menu);
@@ -25,40 +22,53 @@ export class MenuScene extends Phaser.Scene {
   create() {
     const width = this.scale.width;
 
-    this.cameras.main.setBackgroundColor(COLORS.menuBackground);
-    this.children.removeAll();
-
     this.languageChangePromise = null;
+    createScreenBackdrop(this, 'menu');
 
-    this.titleText = this.add.text(width / 2, 150, '', {
+    this.add.image(width / 2, 100, TEXTURE_KEYS.tangerine).setScale(1.6);
+    this.titleText = this.add.text(width / 2, 156, '', {
       fontFamily: 'Arial, sans-serif',
-      fontSize: '56px',
+      fontSize: '48px',
       fontStyle: 'bold',
-      color: '#ffffff',
-      stroke: '#173d14',
-      strokeThickness: 6
+      color: '#23472d',
+      align: 'center',
+      wordWrap: { width: 600 }
     }).setOrigin(0.5);
 
-    this.subtitleText = this.add.text(width / 2, 215, getPhrase(TRANSLATION_KEYS.menu.subtitle), {
+    this.subtitleText = this.add.text(width / 2, 216, '', {
       fontFamily: 'Arial, sans-serif',
       fontSize: '22px',
-      color: '#e8f5d0'
+      color: '#50634b',
+      align: 'center',
+      wordWrap: { width: 580 }
     }).setOrigin(0.5);
 
-    this.createPlayButton(width / 2, 320);
+    const play = createScreenButton(this, width / 2, 306, '', async () => {
+      if (this.languageChangePromise) {
+        await this.languageChangePromise;
+      }
+
+      if (this.sys.isActive()) {
+        this.scene.start(SCENE_KEYS.level, { levelId: 'level1' });
+      }
+    }, { width: 300, height: 68, fontSize: 32 });
+    this.playButtonText = play.text;
 
     this.languageButtons = [];
-    this.createLanguageButton(width / 2 - 90, 405, LANGUAGE_OPTIONS[0]);
-    this.createLanguageButton(width / 2 + 90, 405, LANGUAGE_OPTIONS[1]);
+    this.createLanguageButton(width / 2 - 88, 402, LANGUAGE_OPTIONS[0]);
+    this.createLanguageButton(width / 2 + 88, 402, LANGUAGE_OPTIONS[1]);
 
-    this.controlsText = this.add.text(width / 2, 480, getPhrase(TRANSLATION_KEYS.menu.controls), {
+    this.controlsText = this.add.text(width / 2, 480, '', {
       fontFamily: 'Arial, sans-serif',
-      fontSize: '18px',
-      color: '#d8e8c0'
+      fontSize: '17px',
+      color: '#50634b',
+      align: 'center',
+      wordWrap: { width: 590 }
     }).setOrigin(0.5);
 
     this.refreshTexts();
     this.updateLanguageButtons();
+    this.cameras.main.fadeIn(280);
   }
 
   refreshTexts() {
@@ -68,62 +78,8 @@ export class MenuScene extends Phaser.Scene {
     this.controlsText.setText(getPhrase(TRANSLATION_KEYS.menu.controls));
   }
 
-  createPlayButton(x, y) {
-    const button = this.add.rectangle(x, y, 220, 64, 0xf28c28)
-      .setStrokeStyle(4, 0x7a3e00)
-      .setInteractive({ useHandCursor: true });
-
-    this.playButtonText = this.add.text(x, y, '', {
-      fontFamily: 'Arial, sans-serif',
-      fontSize: '32px',
-      fontStyle: 'bold',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    button.on('pointerover', () => {
-      button.setFillStyle(0xffa64d);
-    });
-
-    button.on('pointerout', () => {
-      button.setFillStyle(0xf28c28);
-    });
-
-    button.on('pointerdown', async () => {
-      if (this.languageChangePromise) {
-        await this.languageChangePromise;
-      }
-
-      if (this.sys.isActive()) {
-        this.scene.start(SCENE_KEYS.level, { levelId: 'level1' });
-      }
-    });
-  }
-
   createLanguageButton(x, y, { label, language }) {
-    const button = this.add.rectangle(x, y, 150, 44, UNSELECTED_COLOR)
-      .setStrokeStyle(3, 0x7a3e00)
-      .setInteractive({ useHandCursor: true });
-
-    this.add.text(x, y, label, {
-      fontFamily: 'Arial, sans-serif',
-      fontSize: '18px',
-      fontStyle: 'bold',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    button.on('pointerover', () => {
-      if (getCurrentLanguage() !== language) {
-        button.setFillStyle(HOVER_COLOR);
-      }
-    });
-
-    button.on('pointerout', () => {
-      if (getCurrentLanguage() !== language) {
-        button.setFillStyle(UNSELECTED_COLOR);
-      }
-    });
-
-    button.on('pointerdown', async () => {
+    const control = createScreenButton(this, x, y, label, async () => {
       if (getCurrentLanguage() === language || this.languageChangePromise) {
         return;
       }
@@ -138,18 +94,16 @@ export class MenuScene extends Phaser.Scene {
 
       this.refreshTexts();
       this.updateLanguageButtons();
-    });
+    }, { width: 156, height: 44, fontSize: 18, secondary: true });
 
-    this.languageButtons.push({ button, language });
+    this.languageButtons.push({ ...control, language });
   }
 
   updateLanguageButtons() {
     const currentLanguage = getCurrentLanguage();
 
-    for (const { button, language } of this.languageButtons) {
-      button.setFillStyle(
-        language === currentLanguage ? SELECTED_COLOR : UNSELECTED_COLOR
-      );
+    for (const { setSelected, language } of this.languageButtons) {
+      setSelected(language === currentLanguage);
     }
   }
 }

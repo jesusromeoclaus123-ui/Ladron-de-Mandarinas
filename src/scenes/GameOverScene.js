@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
-import { COLORS, SCENE_KEYS } from '../game/constants.js';
+import { SCENE_KEYS, TEXTURE_KEYS } from '../game/constants.js';
+import { createScreenBackdrop, createScreenButton } from '../game/screenLayout.js';
 import { TRANSLATION_KEYS } from '../services/translationKeys.js';
 import { getPhrase } from '../services/translations.js';
 
@@ -14,56 +15,39 @@ export class GameOverScene extends Phaser.Scene {
 
   create() {
     const width = this.scale.width;
-    const height = this.scale.height;
 
-    this.cameras.main.setBackgroundColor(COLORS.menuBackground);
+    createScreenBackdrop(this, 'gameOver');
+    this.add.ellipse(width / 2, 140, 100, 76, 0x3f4c48)
+      .setStrokeStyle(2, 0x87947b);
+    this.add.image(width / 2, 138, TEXTURE_KEYS.neighbor).setScale(1.5);
 
-    this.add.text(width / 2, 180, getPhrase(TRANSLATION_KEYS.gameOver.title), {
+    this.add.text(width / 2, 218, getPhrase(TRANSLATION_KEYS.gameOver.title), {
       fontFamily: 'Arial, sans-serif',
-      fontSize: '64px',
+      fontSize: '60px',
       fontStyle: 'bold',
-      color: '#ffffff',
-      stroke: '#5a1f1f',
-      strokeThickness: 6
+      color: '#ffe5be',
+      stroke: '#101f26',
+      strokeThickness: 5,
+      align: 'center',
+      wordWrap: { width: 540 }
     }).setOrigin(0.5);
 
-    this.add.text(width / 2, 250, getPhrase(TRANSLATION_KEYS.gameOver.subtitle), {
+    this.add.text(width / 2, 278, getPhrase(TRANSLATION_KEYS.gameOver.subtitle), {
       fontFamily: 'Arial, sans-serif',
-      fontSize: '24px',
-      color: '#f5d0d0'
+      fontSize: '22px',
+      color: '#c1ccc1',
+      align: 'center',
+      wordWrap: { width: 520 }
     }).setOrigin(0.5);
 
-    this.createButton(width / 2, 340, getPhrase(TRANSLATION_KEYS.gameOver.retry), () => {
-      this.scene.stop();
+    createScreenButton(this, width / 2, 354, getPhrase(TRANSLATION_KEYS.gameOver.retry), () => {
       this.scene.start(SCENE_KEYS.level, { levelId: this.levelId });
-    });
+    }, { width: 320, fontSize: 28 });
 
-    this.createButton(width / 2, 420, getPhrase(TRANSLATION_KEYS.gameOver.backToMenu), () => {
-      this.scene.stop();
+    createScreenButton(this, width / 2, 438, getPhrase(TRANSLATION_KEYS.gameOver.backToMenu), () => {
       this.scene.start(SCENE_KEYS.menu);
-    });
-  }
+    }, { width: 320, fontSize: 24, secondary: true, dark: true });
 
-  createButton(x, y, label, callback) {
-    const button = this.add.rectangle(x, y, 280, 64, 0xf28c28)
-      .setStrokeStyle(4, 0x7a3e00)
-      .setInteractive({ useHandCursor: true });
-
-    this.add.text(x, y, label, {
-      fontFamily: 'Arial, sans-serif',
-      fontSize: '28px',
-      fontStyle: 'bold',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    button.on('pointerover', () => {
-      button.setFillStyle(0xffa64d);
-    });
-
-    button.on('pointerout', () => {
-      button.setFillStyle(0xf28c28);
-    });
-
-    button.on('pointerdown', callback);
+    this.cameras.main.fadeIn(280);
   }
 }

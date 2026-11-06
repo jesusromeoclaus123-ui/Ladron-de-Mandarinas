@@ -22,3 +22,10 @@ Los recursos de esta mejora son dibujos originales creados para este proyecto me
 - El ciclo del protagonista se reproduce a 8 fotogramas por segundo únicamente al caminar por el suelo. Reposo, salto y caída conservan su textura original.
 
 Estos gráficos son provisionales y conservan el estilo geométrico simple del juego.
+
+## Composiciones de pantallas finales
+
+- Fuente: `src/game/screenLayout.js`, dibujos originales con `Phaser.Graphics`, bajo la licencia ISC del proyecto.
+- Tamaño lógico: 800 × 600 píxeles. Incluyen colinas, cielo, cerca decorativa, paneles y botones; Victoria añade banderines y confeti.
+- Se reutilizan las texturas existentes del árbol, arbusto, flores, mandarina, vecino y protagonista. No se incorporan imágenes externas ni sprites nuevos.
+- Todos estos elementos son decorativos, sin cuerpos físicos. Las animaciones pertenecen a cada escena y se eliminan al salir de ella.

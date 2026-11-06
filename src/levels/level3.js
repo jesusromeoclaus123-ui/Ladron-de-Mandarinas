@@ -29,17 +29,21 @@ export const level3 = {
   platforms: [
     { x: 260, y: 450, width: 170, height: 24 },
     { x: 520, y: 380, width: 150, height: 24 },
+    { x: 700, y: 450, width: 160, height: 24 },
     { x: 930, y: 450, width: 160, height: 24 },
     { x: 1180, y: 370, width: 150, height: 24 },
+    { x: 1420, y: 440, width: 140, height: 24 },
     { x: 1710, y: 450, width: 160, height: 24 },
-    { x: 1950, y: 380, width: 150, height: 24 },
+    { x: 1900, y: 380, width: 320, height: 24 },
     { x: 2440, y: 450, width: 170, height: 24 },
-    { x: 2680, y: 370, width: 150, height: 24 },
-    { x: 2880, y: 450, width: 160, height: 24 }
+    { x: 2880, y: 450, width: 160, height: 24 },
+    { x: 3100, y: 380, width: 130, height: 24 }
   ],
   fences: [
+    { x: 400, y: 480, width: 16, height: 80 },
     { x: 620, y: 480, width: 16, height: 80 },
     { x: 1420, y: 480, width: 16, height: 80 },
+    { x: 1810, y: 480, width: 16, height: 80 },
     { x: 2160, y: 480, width: 16, height: 80 },
     { x: 2760, y: 480, width: 16, height: 80 },
     { x: 3050, y: 480, width: 16, height: 80 }
@@ -50,12 +54,13 @@ export const level3 = {
     { x: 1010, y: 424 },
     { x: 1255, y: 344 },
     { x: 1790, y: 424 },
-    { x: 2025, y: 354 },
+    { x: 2175, y: 354 },
     { x: 2960, y: 424 }
   ],
   exit: { x: 3250, y: 520 },
   neighbors: [
-    { x: 1120, y: 539, patrolLeft: 960, patrolRight: 1340 },
-    { x: 2550, y: 539, patrolLeft: 2490, patrolRight: 2690 }
+    { x: 1120, y: 540, patrolLeft: 960, patrolRight: 1340 },
+    { x: 2060, y: 360, patrolLeft: 2010, patrolRight: 2110 },
+    { x: 2550, y: 540, patrolLeft: 2490, patrolRight: 2690 }
   ]
 };
